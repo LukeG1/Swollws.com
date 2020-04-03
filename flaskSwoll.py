@@ -1,4 +1,4 @@
-from forms import LoginForm, regestrationForm, exerciseForm, compForm, reqAdmin, addEx, EditEx, RemoveEx, RemoveUser, nonRequest, profileForm, joinComp, endComp
+#from forms import LoginForm, regestrationForm, exerciseForm, compForm, reqAdmin, addEx, EditEx, RemoveEx, RemoveUser, nonRequest, profileForm, joinComp, endComp
 from flask_login import LoginManager, UserMixin, login_user, current_user, login_required, logout_user
 from flask import Flask, render_template, url_for, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
@@ -294,11 +294,14 @@ def exercises():
         return redirect(url_for('login'))
     form = exerciseForm()
     upVars()
+    compsInText = ""
     if form.validate_on_submit():
         user = current_user
         for c in Comp.query.all():
             if(user.id in json.loads(c.members)):
                 if(Exes.query.filter_by(name=form.exercise.data).first().id in json.loads(c.exes)):
+                    print(c.name)
+                    compsInText+=c.name+", "
                     for p in json.loads(c.content):
                         if(p['name']==user.username):
                             userExes = p['exes']
@@ -330,12 +333,13 @@ def exercises():
                                         t.append(c.id)
                                 u.comps=json.dumps(t)
                             db.session.commit()
-                            flash('Sucessful logged '+str(form.qty.data)+' of '+form.exercise.data+' for '+user.username+' for '+c.name,'success')
                             break
         if(form.qty.data>0):
             Exes.query.filter_by(name=form.exercise.data).first().uses+=1
             db.session.commit()
-
+        if(compsInText[-2]==","):
+            compsInText=compsInText[:-2]
+        flash('Sucessful logged '+str(form.qty.data)+' of '+form.exercise.data+' for '+user.username+' for '+compsInText,'success')
         news = []
         olds = []
         for c in Comp.query.all():
