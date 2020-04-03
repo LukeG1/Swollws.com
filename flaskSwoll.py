@@ -162,7 +162,6 @@ def addUserToComp(comp):
         print(current_user.id)
         print(comp.members)
 
-# generate a random string of length l
 def genRandom(l):
     lets = "1234567890abcdefghijklmnopqrstuvwxyz"
     tempLoc = ""
