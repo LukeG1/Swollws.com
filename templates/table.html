@@ -1,0 +1,17 @@
+<script>
+    var i = 0
+    function myFunction() {
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "text");
+        x.setAttribute("name", String(i));
+        x.setAttribute("id", String(i));
+        //document.body.appendChild(x);
+        document.getElementById("fid").appendChild(x);
+        i+=1;
+    }
+</script>
+
+<form method="post" id='fid'> 
+    <input type='submit'>
+</form>
+<button onclick="myFunction()">Add Trait</button>

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class='content-section'>
+        <form method='POST' action ="">
+            {{ formExMod.hidden_tag() }}
+            <fieldseet class='form-group'>
+                <legend class='border-bottom mb-4'>Add new exercise</legend>
+                <div class='form-group'>
+                    {{ formExMod.mod(class='form-check-input') }} 
+                    {{ formExMod.mod.label(class='form-check-label') }}
+                </div>
+                <div class='form-group'>
+                    {{ formExMod.newName.label(class='form-control-label') }}
+                    {{ formExMod.newName(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'>
+                    {{ formExMod.val.label(class='form-control-label') }}
+                    {{ formExMod.val(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'>
+                    {{ formExMod.desc.label(class='form-control-label') }}
+                    {{ formExMod.desc(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'> 
+                    {{ formExMod.submit(class='btn btn-outline-info') }}
+                </div>
+            </fieldseet>
+        </form>
+    </div>
+
+    <div class='content-section'>
+        <form method='POST' action ="">
+            {{ formExModR.hidden_tag() }}
+            <fieldseet class='form-group'>
+                <legend class='border-bottom mb-4'>Edit an exercise</legend>
+                <div class='form-group'>
+                    {{ formExModR.exercise.label(class='form-control-label') }}
+                    {{ formExModR.exercise(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'>
+                    {{ formExModR.val.label(class='form-control-label') }}
+                    {{ formExModR.val(class='form-control form-control-lg') }}
+                </div>
+            </fieldseet>
+            <div class='form-group'>
+                {{ formExModR.submit(class='btn btn-outline-info') }}
+            </div>
+        </form>
+    </div>
+
+    <div class='content-section'>
+        <form method='POST' action ="">
+            {{ formRU.hidden_tag() }}
+            <fieldseet class='form-group'>
+                <legend class='border-bottom mb-4'>Remove a user</legend>
+                <div class='form-group'>
+                    {{ formRU.userR.label(class='form-control-label') }}
+                    {{ formRU.userR(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'>
+                    {{ formRU.submit(class='btn btn-outline-info') }}
+                </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+    </div>
+{% endblock content %}

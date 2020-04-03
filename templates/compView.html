@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for c in comps %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                <small class="text-muted">Goal: {{ c.goal }}&nbsp|&nbsp{{ c.datePosted }} - {{ date }}</small>
+                </div>
+                <h2><a class="article-title" href="/comps/{{ compName }}">{{ c.name }}</a></h2>
+                <table>
+                    {% for u in c.content %}
+                        {% if c.content.index(u) == 0 %}
+                            <tr>
+                                <td><p class="article-content" style="color: #d7a50f;">{{ u['name'] }}</p></td>
+                                <td><p class="article-content" style="color: #d7a50f;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }} points</p></td>
+                            </tr>
+                        {% elif c.content.index(u) == 1 %}
+                            <tr>
+                                <td><p class="article-content" style="color: #999999;">{{ u['name'] }}</p></td>
+                                <td><p class="article-content" style="color: #999999;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }} points</p></td>
+                            </tr>
+                        {% elif c.content.index(u) == 2 %}
+                            <tr>
+                                <td><p class="article-content"style="color: #c06b10;">{{ u['name'] }}</p></td>
+                                <td><p class="article-content"style="color: #c06b10;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }} points</p></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td><p class="article-content">{{ u['name'] }}</p></td>
+                                <td><p class="article-content">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }} points</p></td>
+                            </tr>
+                        {% endif %}
+
+                    {% endfor %}
+                </table>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

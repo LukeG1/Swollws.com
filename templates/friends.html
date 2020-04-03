@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for c in fullBigger %}
+        <h3>{{ c[0] }}</h3>
+        <article class="media content-section" style="overflow: auto">
+            <table class='table table-striped'>
+                <thead>
+                    <tr>
+                        {% for e in c[1][0] %}
+                            <th>{{ e }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for u in c[1][1:] %}
+                        <tr>
+                            {% for i in u %}
+                                <td>{{ i }}</td>
+                            {% endfor %}
+                        </tr> 
+                    {% endfor %}
+                </tbody>
+            </table>
+        </article>
+    {% endfor %}
+{% endblock content %}

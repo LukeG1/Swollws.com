@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class='content-section'>
+        <form method='POST' action ="">
+            {{ form.hidden_tag() }}
+            <fieldseet class='form-group'>
+                <legend class='border-bottom mb-4'>Log Exercises</legend>
+
+                <div class='form-group'>
+                    {{ form.exercise.label(class='form-control-label') }}
+                    {{ form.exercise(class='form-control form-control-lg',onchange="showDiv('hidden_div',this)") }}
+                </div>
+                <div id='hidden_div' class='form-group' style='display: none;'>
+                    {{ form.weight.label(class='form-control-label') }}
+                    {{ form.weight(class='form-control form-control-lg') }}
+                </div>
+                <script>
+                    function showDiv(divId,element){
+                        document.getElementById(divId).style.display = {{ exesMod|safe }}.includes(element.value) ? 'block' : 'none'; 
+                    }
+                </script>
+                <div class='form-group'>
+                    {{ form.qty.label(class='form-control-label') }}
+                    {{ form.qty(class='form-control form-control-lg') }}
+                </div>
+
+            </fieldseet>
+            <span class=''>
+                <div class='form-group bttns'>
+                    {{ form.submitL(class='btn btn-outline-info') }}
+                </div>
+                <div class='form-group'> 
+                    {{ form.submitF(class='btn btn-outline-info') }}
+                </div>
+            </span>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+    </div>
+{% endblock content %}

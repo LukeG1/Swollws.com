@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form method='POST' action ="">
+    {{ form.hidden_tag() }}
+    <fieldseet class='form-group'>
+        <div class='content-section'>
+            <legend class='border-bottom mb-4'>Edit your profile</legend>
+                <div class='form-group'>
+                    {{ form.cPassword.label(class='form-control-label') }}
+                    {{ form.cPassword(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'>
+                    {{ form.password.label(class='form-control-label') }}
+                    {{ form.password(class='form-control form-control-lg') }}
+                </div>
+                <div class='form-group'>
+                    <a>New Color</a>
+                    <input name="color" type="color" value="{{ current_user.color }}" class='form-control form-control-lg'>
+                </div>
+                <div class='form-group'>
+                    {{ form.dark.label(class='form-control-label') }}
+                        {{ form.dark(class='form-control form-control-lg', checked=current_user.dark ) }}
+                </div>
+            </fieldseet>
+            <div class='form-group'>
+                {{ form.submit(class='btn btn-outline-info') }}
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+
+

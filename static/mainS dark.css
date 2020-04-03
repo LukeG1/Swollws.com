@@ -1,0 +1,146 @@
+body {
+    background: #1b1b1b;
+    color: #858585;
+    margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #d1d1d1;
+}
+
+
+.bg-steel {
+    background-color: #222fe7;
+}
+
+.form-control {  
+    background-color: #2b2b2b;
+    color: #868686;
+}
+
+div.scrollmenu {
+    background-color: #1f1f1f;
+    overflow: auto;
+    white-space: nowrap;
+    border-top: 1px solid #313131;
+    border-left: 1px solid #313131;
+    border-right: 1px solid #313131;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: rgb(202, 202, 202);
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: rgb(24, 24, 24);
+}
+  
+.site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+}
+
+#hidden_div{
+    display: none;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.content-section {
+    background: #1f1f1f;
+    padding: 10px 20px;
+    border: 1px solid #313131;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.article-title {
+    color: #cfcfcf;
+}
+
+a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+}
+
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+}
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #3d3d3d
+}
+
+.article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+}
+
+.account-heading {
+    font-size: 2.5rem;
+}
+
+.bttns {
+    float: left;
+    padding-right: 20px;
+}
+
+.upBuff {
+    background: #222fe7;
+    border-color: #222fe7;
+}
+
+.lHead {
+    border-bottom-color: #9e9e9e;
+    border-bottom-width: 10px;
+}
+
+.pic {
+    float: right;
+}
+
+th,td {
+    white-space: nowrap;
+    color: #9e9e9e;
+}
+
+/* .error {
+    color: red
+}
+.success {
+    border: 1px solid darkgray;
+    border-radius: 3px;
+    background-color: #90E495;
+} */

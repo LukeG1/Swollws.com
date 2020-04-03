@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+        {% if current_user.is_authenticated %} 
+            {% if current_user.dark %}
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mainS dark.css') }}">
+            {% else %}
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mainS.css') }}">
+            {% endif %}
+        {% else %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mainS.css') }}">
+        {% endif %}   
+        {% if title %}
+            <title>{{ title }}</title>
+        {% else %}
+            <title>There should be a title here...</title>
+        {% endif %}
+    </head>
+    <body>
+        <header class="site-header">
+                <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+                    <div class="container">
+                    <a class="navbar-brand mr-4" href="/">Movement β</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                         <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{{ url_for('exercises') }}">Log Exercises</a>
+                        <a class="nav-item nav-link" href="{{ url_for('usersdata') }}">Users</a>
+                        <a class="nav-item nav-link" href="{{ url_for('exerciseData') }}">Exercises</a>
+                        <a class="nav-item nav-link" href="{{ url_for('start') }}">Competitions</a>
+                        {% if current_user.admin == True %}
+                            <a class="nav-item nav-link" href="/admin">Admin</a>
+                        {% endif %}
+                        <select class="nav-item nav-link upBuff " onchange="location = this.value;">
+                            <option value="" disabled selected>About</option> 
+                            <option value="{{ url_for('about') }}">Details</option>
+                            <option value="{{ url_for('faqs') }}">FAQs</option>
+                            <option value="{{ url_for('rules') }}">Rules</option>
+
+                        </select>
+                        </div>
+                        <div class="navbar-nav">
+                            {% if current_user.is_authenticated %}
+                                <a class="nav-item nav-link" href="/profile">{{ current_user.username }}</a>
+                                <a class="nav-item nav-link" href="/logout">Logout</a>
+                            {% else %}
+                                <a class="nav-item nav-link" href="/login">Login</a>
+                                <a class="nav-item nav-link" href="/register">Register</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    </div>
+                </nav>
+            </header>
+
+        <main role="main" class="container">
+            <div class="row">
+                <div class="col-md-8">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <!-- <strong>Title</strong> --> {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="content-section" style="overflow: auto">
+                    {% if current_user.is_authenticated %}
+                        <div class="scrollmenu">
+                            {% for c in userComps %}
+                                <a href="{{url_for('home',type= c.replace(' ','') )}}">{{ c.replace("_"," ") }}</a>
+                            {% endfor %}
+                       </div>
+                        <p class='text-muted'>
+                        <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>Exercise</th>
+                                <th>Reps</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in exesU %}
+                                <tr>
+                                    <td>{{ e[0] }}</td>
+                                    <td>{{ e[1] }}</td>
+                                    <td>{{ e[2] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        </table>
+                        </p>
+                    {% else %}
+                        <h3>Log In to View Exercises</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

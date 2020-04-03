@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for c in comps %}
+        {% if current_user.id in c.members  %}
+            {% if c.name != compN %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                        <small class="text-muted">Goal: {{ c.goal }}&nbsp|&nbsp{{ c.datePosted }} - {{ date }}</small>
+                        </div>
+                        <h2><a class="article-title" href="{{url_for('home',compN= c.name )}}">⯈{{ c.name.replace("_"," ") }}</a></h2>
+                        <table>
+                            <th>
+                                <tr>
+                                    <td>Name&nbsp</td>
+                                    <td>&nbspPercent&nbsp&nbsp</td>
+                                    <td>&nbsp&nbspPoints</td>
+                                </tr>
+                            </th>
+                            {% for u in c.content[:3] %}
+                                {% if c.content.index(u) == 0 %}
+                                    <tr>
+                                        <td><p class="article-content" style="color: #d7a50f;">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content" style="color: #d7a50f;">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content" style="color: #d7a50f;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>
+                                    </tr>
+                                {% elif c.content.index(u) == 1 %}
+                                    <tr>
+                                        <td><p class="article-content" style="color: #999999;">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content" style="color: #999999;">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content" style="color: #999999;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>
+                                    </tr>
+                                {% elif c.content.index(u) == 2 %}
+                                    <tr>
+                                        <td><p class="article-content" style="color: #c06b10;">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content" style="color: #c06b10;">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content" style="color: #c06b10;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td><p class="article-content">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>   
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                        <!-- <h2 style="color: gray;"><a class="article-title" href="{{url_for('home',compN= c.name )}}">˅</a></h2> -->
+                    </div>
+                </article>
+            {% else %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                        <small class="text-muted">Goal: {{ c.goal }}&nbsp|&nbsp{{ c.datePosted }} - {{ date }}</small>
+                        <small class="text-muted"><br/>Join Code: {{c.code}}</small>
+                        </div>
+                        <h2><a class="article-title" href="{{url_for('home',compN= '' )}}">⯆{{ c.name.replace("_"," ") }}</a></h2>
+                        <table>
+                            <th>
+                                <tr>
+                                    <td>Name&nbsp</td>
+                                    <td>&nbspPercent&nbsp&nbsp</td>
+                                    <td>&nbsp&nbspPoints</td>
+                                </tr>
+                            </th>
+                            {% for u in c.content %}
+                                {% if c.content.index(u) == 0 %}
+                                    <tr>
+                                        <td><p class="article-content" style="color: #d7a50f;">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content" style="color: #d7a50f;">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content" style="color: #d7a50f;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>
+                                    </tr>
+                                {% elif c.content.index(u) == 1 %}
+                                    <tr>
+                                        <td><p class="article-content" style="color: #999999;">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content" style="color: #999999;">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content" style="color: #999999;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>
+                                    </tr>
+                                {% elif c.content.index(u) == 2 %}
+                                    <tr>
+                                        <td><p class="article-content" style="color: #c06b10;">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content" style="color: #c06b10;">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content" style="color: #c06b10;">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td><p class="article-content">{{ u['name'] }}</p></td>
+                                        <td><p class="article-content">&nbsp&nbsp&nbsp&nbsp{{ u['percent'] }}</p></td>
+                                        <td><p class="article-content">&nbsp&nbsp&nbsp&nbsp{{ u['pts'] }}</p></td>   
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                        <!-- <h2 style="color: gray;"><a class="article-title" href="{{url_for('home',compN= '' )}}">^</a></h2> -->
+                    </div>
+                </article>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
