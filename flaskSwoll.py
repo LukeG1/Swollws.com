@@ -1,4 +1,4 @@
-#from forms import LoginForm, regestrationForm, exerciseForm, compForm, reqAdmin, addEx, EditEx, RemoveEx, RemoveUser, nonRequest, profileForm, joinComp, endComp
+from forms import LoginForm, regestrationForm, exerciseForm, compForm, reqAdmin, addEx, EditEx, RemoveEx, RemoveUser, nonRequest, profileForm, joinComp, endComp
 from flask_login import LoginManager, UserMixin, login_user, current_user, login_required, logout_user
 from flask import Flask, render_template, url_for, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
