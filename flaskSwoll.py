@@ -30,43 +30,6 @@ login_manager = LoginManager(app)
 
 ###################################################################################################
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(), unique=True, nullable=False)
-    email = db.Column(db.String(), unique=True, nullable=False)
-    password = db.Column(db.String(), nullable=False)
-    color = db.Column(db.String(), nullable=False)
-    phonenumber = db.Column(db.String(), nullable=False)
-    pts = db.Column(db.Float, nullable=False, default=0)
-    exes = db.Column(db.String(), nullable=False)
-    currentView = db.Column(db.String(), nullable=False, default='')
-    comps = db.Column(db.String(), nullable=False)
-    admin = db.Column(db.Boolean, default=0)
-    dark = db.Column(db.Boolean, default=0)
-    def __repr__(self):
-        return "user: ("+self.username+" / "+self.email+" / "+self.color+")"
-
-class Exes(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False)
-    mod = db.Column(db.Boolean, default=0)
-    uses = db.Column(db.Integer, default=0)
-    value = db.Column(db.Float, nullable=False)
-    exp = db.Column(db.Integer, default=1, nullable=False)
-    desc = db.Column(db.String(), nullable=False)
-
-class Comp(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), nullable=False)
-    goal = db.Column(db.Integer, nullable=False)
-    datePosted = db.Column(db.String(), nullable=False)
-    autoRenew = db.Column(db.Boolean, default=0, nullable=False)
-    exes = db.Column(db.String(), nullable=False)
-    members = db.Column(db.String(), nullable=False)
-    content = db.Column(db.String(), nullable=False)
-    creator = db.Column(db.Integer, nullable=False)
-    code = db.Column(db.String(), nullable=False)
-
 
 ###################################################################################################
 
